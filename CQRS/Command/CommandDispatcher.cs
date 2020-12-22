@@ -17,7 +17,7 @@ namespace CQRS.Command
         {
             using (var serviceScope = serviceProvider.CreateScope())
             {
-                var commandHandler = serviceScope.ServiceProvider.GetRequiredService<ICommandHandler<T>>();
+                var commandHandler = serviceScope.ServiceProvider.GetService<IQueryHandler<T>>();
                await commandHandler.handleAsync(command);
             }
         }

@@ -2,7 +2,7 @@
 
 namespace CQRS.Command
 {
-    public interface ICommandHandler<T> where T : class, ICommand
+    public interface IQueryHandler<T> where T : class, ICommand
     {
         public Task handleAsync(T command);
     }

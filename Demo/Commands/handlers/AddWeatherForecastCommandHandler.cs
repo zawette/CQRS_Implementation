@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CQRS_Implementation.Commands.handlers
 {
-    public class AddWeatherForecastCommandHandler : ICommandHandler<AddWeatherForecastCommand>
+    public class AddWeatherForecastCommandHandler : IQueryHandler<AddWeatherForecastCommand>
     {
         public  Task handleAsync(AddWeatherForecastCommand command)
         {

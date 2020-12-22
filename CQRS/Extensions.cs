@@ -7,9 +7,8 @@ namespace CQRS
 {
     public static class Extensions
     {
-        public static IServiceCollection addCommandHandlers(this IServiceCollection serviceCollection)
+        private static IServiceCollection addTransientClassesOfType(this IServiceCollection serviceCollection, Type type)
         {
-            var type = typeof(ICommandHandler<>);
             var Assemblies = AppDomain.CurrentDomain.GetAssemblies();
             var Types = Assemblies
                 .SelectMany(a => a.GetTypes())
@@ -20,6 +19,19 @@ namespace CQRS
                 serviceCollection.AddTransient(interf, t);
             }
             return serviceCollection;
+        }
+
+        public static IServiceCollection addCommandHandlers(this IServiceCollection serviceCollection)
+        {
+            var type = typeof(IQueryHandler<>);
+            return serviceCollection.addTransientClassesOfType(type);
+        }
+
+        public static IServiceCollection addQueryHandlers(this IServiceCollection serviceCollection)
+        {
+            var type = typeof(IQueryHandler<>);
+            return serviceCollection.addTransientClassesOfType(type);
+ 
         }
 
         public static IServiceCollection addComandDispatcher(this IServiceCollection serviceCollection)
