@@ -1,4 +1,5 @@
 ﻿using CQRS.Command;
+using CQRS.Query;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Linq;
@@ -36,5 +37,8 @@ namespace CQRS
 
         public static IServiceCollection addComandDispatcher(this IServiceCollection serviceCollection)
             => serviceCollection.AddSingleton<ICommandDispatcher, CommandDispatcher>();
+
+        public static IServiceCollection addQueryDispatcher(this IServiceCollection serviceCollection)
+    => serviceCollection.AddSingleton<IQueryDispatcher, QueryDispatcher>();
     }
 }
