@@ -24,13 +24,13 @@ namespace CQRS
 
         public static IServiceCollection addCommandHandlers(this IServiceCollection serviceCollection)
         {
-            var type = typeof(IQueryHandler<>);
+            var type = typeof(ICommandHandler<>);
             return serviceCollection.addTransientClassesOfType(type);
         }
 
         public static IServiceCollection addQueryHandlers(this IServiceCollection serviceCollection)
         {
-            var type = typeof(IQueryHandler<>);
+            var type = typeof(IQueryHandler<,>);
             return serviceCollection.addTransientClassesOfType(type);
  
         }
